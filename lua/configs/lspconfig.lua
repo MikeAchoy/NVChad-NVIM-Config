@@ -22,3 +22,23 @@ end
 --   on_init = nvlsp.on_init,
 --   capabilities = nvlsp.capabilities,
 -- }
+
+-- configuring jdtls for Java 
+lspconfig.jdtls.setup {
+  on_attach = nvlsp.on_attach,
+  on_init = nvlsp.on_init,
+  capabilities = nvlsp.capabilities,
+  -- Set root_dir and other specific settings for jdtls here
+  root_dir = function()
+    return vim.fs.dirname(vim.fs.find({'.git', 'mvnw', 'gradlew'}, { upward = true })[1])
+  end,
+}
+
+-- configuring pyright for Python 
+lspconfig.pyright.setup {
+  on_attach = nvlsp.on_attach,
+  on_init = nvlsp.on_init,
+  capabilities = nvlsp.capabilities,
+  -- You can add Python-specific settings if needed
+}
+
